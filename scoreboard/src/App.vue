@@ -1,23 +1,58 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    
+    <quiz-list v-bind:quizzes="quizzes"></quiz-list>
+    <create-quiz v-on:create-quiz="createQuiz"></create-quiz>
+
   </div>
 </template>
 
 <script>
+
+import QuizList from './components/QuizList';
+import CreateQuiz from './components/CreateQuiz';
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    QuizList,
+    CreateQuiz
+  },
+  methods: {
+    createQuiz(newQuiz) {
+      this.quizzes.push({
+        title: newQuiz.title,
+        description: newQuiz.description,
+        cards: []
+      });
+    }
+  },
+  data () {
+    return {
+      quizzes: [{
+        title: 'Chapter 1',
+        description: 'This is a sample description.',
+        cards: [
+          {
+            term: "Some Word",
+            definition: 'Some definition'
+          }
+        ]
+      },
+      {
+        title: 'Chapter 2',
+        description: 'This is a another sample description.',
+        cards: [
+         
+        ]
+      }]
+    }
+  }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
