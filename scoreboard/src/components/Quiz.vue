@@ -22,6 +22,12 @@
 
         </span>
 
+        <span class="right floated" v-on:click="deleteQuiz(quiz)">
+
+          <i class="trash icon"></i>
+
+        </span>
+
       </div>
 
     </div>
@@ -37,6 +43,9 @@
     methods: {
       viewQuiz(quiz) {
         this.$emit('view-quiz', quiz);
+      },
+      deleteQuiz(quiz) {
+        this.$emit('delete-quiz', quiz);
       }
     }
   }
