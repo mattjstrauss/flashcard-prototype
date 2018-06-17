@@ -20,7 +20,10 @@ export default {
   },
   methods: {
     createQuiz(newQuiz) {
+      const maxId = Math.max.apply(Math, this.quizzes.map(function(q) {return q.id}));
+      const nextId = maxId + 1;
       this.quizzes.push({
+        id: nextId,
         title: newQuiz.title,
         description: newQuiz.description,
         cards: []
@@ -30,20 +33,27 @@ export default {
   data () {
     return {
       quizzes: [{
+        id: 1,
         title: 'Chapter 1',
         description: 'This is a sample description.',
         cards: [
           {
+            id: 1,
             term: "Some Word",
-            definition: 'Some definition'
+            definition: 'Some definition',
+          },
+          {
+            id: 2,
+            term: "Another Word",
+            definition: 'Some other definition'
           }
         ]
       },
       {
+        id: 2,
         title: 'Chapter 2',
         description: 'This is a another sample description.',
         cards: [
-         
         ]
       }]
     }
